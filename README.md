@@ -118,72 +118,77 @@ new rating value from authenticated user.
 ```erb
 <%# show.html.erb -> /cars/1 %>
 
-Speed  : <%= rating_for @car, "speed" %>
-Engine : <%= rating_for @car, "engine" %>
-Price  : <%= rating_for @car, "price" %>
+Speed  : <%= rating_for @car, "speed", star_path: ''  %>
+Engine : <%= rating_for @car, "engine", star_path: ''  %>
+Price  : <%= rating_for @car, "price", star_path: ''  %>
 ```
 
 ### Available Options
 
 1- If you need to change the star number, you should use star option like below.
 ```erb
-Speed : <%= rating_for @car, "speed", :star => 10 %>
-Speed : <%= rating_for @car, "engine", :star => 7 %>
-Speed : <%= rating_for @car, "price" %>
+Speed : <%= rating_for @car, "speed", star: 10, star_path: ''  %>
+Speed : <%= rating_for @car, "engine", star: 7, star_path: ''  %>
+Speed : <%= rating_for @car, "price", star_path: ''  %>
 ```
-2- If you want to disable/enable the rating after user's first rate use the new option *disable_after_rate*
+2- If you want to enable the rating after user's first rate use the new option *disable_after_rate* **(default is true)**
 ```erb
-Speed : <%= rating_for @car, "speed", :disable_after_rate => true %>
+Speed : <%= rating_for @car, "speed", disable_after_rate: false, star_path: ''  %>
 ```
-To enable changes after first user rate set ```disable_after_rate``` to false
 
 3- To enable half stars use the option *enable_half*
 ```erb
-Speed : <%= rating_for @car, "speed", :enable_half => true %>
+Speed : <%= rating_for @car, "speed", enable_half: true, star_path: ''  %>
 ```
 4- To show or hide the half stars use *half_show*
 ```erb
-Speed : <%= rating_for @car, "speed", :half_show => true %>
+Speed : <%= rating_for @car, "speed", half_show: true, star_path: ''  %>
 ```
 5- To change the path in which the star images (star-on.png, star-off.png, star-half.png, ..etc) are located use
 ```erb
-Speed : <%= rating_for @car, "speed", :star_path => true %>
+Speed : <%= rating_for @car, "speed", star_path: '' %>
 ```
 
 To just change one of the star images choose from these options (star_on, star_off, star_half)
 
 6- To add the cancel button to the left, or right of the stars use **(default is false)**
 ```erb
-Speed : <%= rating_for @car, "speed", :cancel => true %>
+Speed : <%= rating_for @car, "speed", cancel: true, star_path: ''  %>
 ```
 7- To change the place of the cancel button (left, or right) use **(default is left)**
 ```erb
-Speed : <%= rating_for @car, "speed", :cancel_place => left %>
+Speed : <%= rating_for @car, "speed", cancel_place: left, star_path: ''  %>
 ```
 8- To change the hint on the cancel button use **(default is "Cancel current rating!" )**
 ```erb
-Speed : <%= rating_for @car, "speed", :cancel_hint => "Cancel this rating!" %>
+Speed : <%= rating_for @car, "speed", cancel_hint: "Cancel this rating!", star_path: ''  %>
 ```
 9- To change the image of the cancel on button use
 ```erb
-Speed : <%= rating_for @car, "speed", :cancel_on => "cancel-on2.png" %>
+Speed : <%= rating_for @car, "speed", cancel_on: "cancel-on2.png", star_path: ''  %>
 ```
 10- To change the image of the cancel off use
 ```erb
-  Speed : <%= rating_for @car, "speed", :cancel_off => "cancel-off2.png" %>
+  Speed : <%= rating_for @car, "speed", cancel_off: "cancel-off2.png", star_path: ''  %>
 ```
+
+11- To Readonly 
+```erb
+  Speed : <%= rating_for @car, "speed", readonly: true, star_path: ''  %>
+```
+
 ### Other Helpers
 
 You can use the *rating_for_user* helper method to show the star rating for the user.
 
 ```erb
-Speed : <%= rating_for_user @car, current_user, "speed", :star => 10 %>
+Speed : <%= rating_for_user @car, current_user, "speed", star: 10, star_path: ''  %>
 ```
 
 And you can use the *imdb_style_rating_for* to show a similar to IMDB rating style.
 
 ```erb
-Speed : <%= imdb_style_rating_for @car, current_user %>
+Speed : <%= imdb_style_rating_for @car, current_user, star_path: ''  %>
 ```
 
 ## Semantic Versioning
