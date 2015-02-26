@@ -41,13 +41,15 @@ module Helpers
                   false
                 end
 
-    rating   = if options.has_key?(:rating)
-                  options[:rating]
-               elsif options.has_key?(:user)
-                 rateable_obj.rates(dimension).where(rater_id: user.id).try(:first).try(:stars).to_s
-               else
-                 rateable_obj.average(dimension).try(:avg).to_s
-               end
+    starts = if options[:stars]
+                options[:stars].to_s
+             elsif user  = options[:user]
+               rating = user.ratings_given.where(rateable: rateable_obj, dimension: dimension).first
+               rating ? rating.stars.to_s : 0
+             else
+               cached_average = rateable_obj.average dimension
+               cached_average ? cached_average.avg.to_s : 0
+             end
 
     content_tag :div, '', class: 'star', data: {
         dimension:          dimension,
@@ -76,8 +78,7 @@ module Helpers
         target_text:        target_text,
         target_type:        target_type,
         target_format:      target_format,
-        target_score:       target_score,
-        rating:             rating
+        target_score:       target_score
     }
   end
 
