@@ -27,6 +27,7 @@ class RatyrateGenerator < ActiveRecord::Generators::Base
     template 'model.rb', File.join('app/models', "rate.rb")
     template 'cache_model.rb', File.join('app/models', "rating_cache.rb")
     template 'rating_average_model.rb', File.join('app/models', "rating_average.rb")
+    template 'rater_controller.rb', File.join('app/controllers', "rater_controller.rb")
   end
 
   def add_rate_path_to_route
