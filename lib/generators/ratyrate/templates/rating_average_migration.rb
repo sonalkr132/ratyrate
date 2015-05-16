@@ -10,7 +10,6 @@ class CreateRatingAverages < ActiveRecord::Migration
     end
 
     add_index :rating_averages, [:rateable_id, :rateable_type]
-    add_index :rating_averages, [:rateable_id, :rateable_type, :rater_id]
   end
 end
 

@@ -36,12 +36,10 @@ module Ratyrate
     # We need user average rating for all dimensions as will as overall rating form all users of all dimensions ( which they have rated )
     user_average = average_rates_for_user(user) || average_rates_with_user.build(rater: user)
     user_average.avg = user.ratings_given.where(rateable: self).average(:stars)
-    user_average.qty = user.ratings_given.where(rateable: self).count
     user_average.save validate: false
 
     overall     = average_rates || build_average_rates
     overall.avg = Rate.where(rateable: self).average(:stars)
-    overall.qty = Rate.where(rateable: self).count
     overall.save validate: false
   end
 
